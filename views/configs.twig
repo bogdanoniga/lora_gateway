@@ -1,0 +1,200 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li class="mt">
+                    <a class="active" href="configs" >
+                        <i class="fa fa-cogs"></i>
+                        <span>Configurations</span>
+                    </a>
+                </li>
+                <li class="mt">
+                    <a href="control" >
+                        <i class="fa fa-cube" aria-hidden="true"></i>
+                        <span>Control Panel</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+          <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <div class="table-header">
+                        <h4 class="mb"><i class="fa fa-angle-right"></i> Gateway Configurations</h4>
+
+                        <div id="auto_start">
+                          <p class="auto-p">Auto Start</p>
+                          <label class="switch">
+                            {% if auto_start %}
+                                <input type="checkbox" checked>
+                            {% else %}
+                                <input type="checkbox">
+                            {% endif %}
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                    </div>
+
+                    <form class="form-horizontal style-form" method="post" action="configs/save">
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Gateway ID</label>
+                            <div class="col-lg-10">
+                                <input id="gateway_id" name="gateway_id" type="text" class="form-control" value="{{ gateway_id }}" placeholder="gateway id">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Bridge server</label>
+                            <div class="col-lg-10">
+                                <input id="server_address" name="server_address" type="text" class="form-control" value="{{ server_address }}" placeholder="bridge server">
+                                <span class="help-block">Bridge server address where the messages are forwarded</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Bridge server port up</label>
+                            <div class="col-lg-10">
+                                <input id="serv_port_up" name="serv_port_up" type="text" class="form-control" value="{{ serv_port_up }}" placeholder="port up">
+                                <span class="help-block">Bridge server port up for uplink messages</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">Bridge server port down</label>
+                            <div class="col-lg-10">
+                                <input id="serv_port_down" name="serv_port_down" type="text" class="form-control" value="{{ serv_port_down }}" placeholder="port down">
+                                <span class="help-block">Bridge server port up for downlink messages</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 col-sm-2 control-label">LoRa Gateway Bridge listen address:port</label>
+                            <div class="col-lg-10">
+                                <input id="udp_bind" name="udp_bind" type="text" class="form-control" value="{{ udp_bind }}" placeholder="bridge listen address">
+                                <span class="help-block">LoRa Gateway Bridge listening address:port for forwarded messages</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT Broker Address</label>
+                            <div class="col-sm-10">
+                                <input id="mqtt_address" name="mqtt_address" type="text" class="form-control" value="{{ mqtt_address }}" placeholder="mqtt://<address>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT Uplink Topic</label>
+                            <div class="col-sm-10">
+                                <input id="uplink_topic_template" name="uplink_topic_template" type="text" class="form-control" value="{{ uplink_topic_template }}" placeholder="gateway/<id>/rx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT Downlink Topic</label>
+                            <div class="col-sm-10">
+                                <input id="downlink_topic_template" name="downlink_topic_template" type="text" class="form-control" value="{{ downlink_topic_template }}" placeholder="gateway/<id>/tx">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT Stats Topic</label>
+                            <div class="col-sm-10">
+                                <input id="stats_topic_template" name="stats_topic_template" type="text" class="form-control" value="{{ stats_topic_template }}" placeholder="gateway/<id>/stats">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT ACK Topic</label>
+                            <div class="col-sm-10">
+                                <input id="ack_topic_template" name="ack_topic_template" type="text" class="form-control" value="{{ ack_topic_template }}" placeholder="gateway/<id>/ack">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">MQTT Config Topic</label>
+                            <div class="col-sm-10">
+                                <input id="config_topic_template" name="config_topic_template" type="text" class="form-control" value="{{ config_topic_template }}" placeholder="gateway/<id>/config">
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-theme03" value="Save">
+                    </form>
+                </div>
+            </div><!-- col-lg-12-->
+          </div>
+          <div class="row mt">
+            <div class="col-lg-6">
+                <div class="form-panel">
+                    <div class="table-header">
+                      <h4 class="mb"><i class="fa fa-angle-right"></i> TLS Cert </h4>
+
+                      {% if mqtt_tlscert != '' %}
+                        <div id="tls_cert_delete" class="button-div button_stop">
+                          <i class="fa fa-trash"></i>
+                          <label class="button-label" for="tls_cert_delete">Delete TLS cert</label>
+                        </div>
+                      {% endif %}
+                    </div>
+                    <form class="form-horizontal style-form" method="post" action="configs/tlscert" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="controls col-md-9">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    {% if mqtt_tlscert == '' %}
+                                      <label for="tls_cert"><b>Current TLS Cert</b>: None </label>
+                                    {% else %}
+                                      <label for="tls_cert"><b>Current TLS Cert</b>: {{ mqtt_tlscert }} </label>
+                                    {% endif %}
+
+                                    <input type="file" name="tls_cert" id="tls_cert" class="default">
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-theme03" value="Save">
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-panel">
+
+                    <div class="table-header">
+                      <h4 class="mb"><i class="fa fa-angle-right"></i> TLS Key </h4>
+
+                      {% if mqtt_tlskey != '' %}
+                        <div id="tls_key_delete" class="button-div button_stop">
+                          <i class="fa fa-trash"></i>
+                          <label class="button-label" for="tls_key_delete">Delete TLS key</label>
+                        </div>
+                      {% endif %}
+                    </div>
+
+                    <form class="form-horizontal style-form" method="post" action="configs/tlskey" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="controls col-md-9">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    {% if mqtt_tlskey == '' %}
+                                      <label for="tls_key"><b>Current TLS Key</b>: None </label>
+                                    {% else %}
+                                      <label for="tls_key"><b>Current TLS Key</b>: {{ mqtt_tlskey }} </label>
+                                    {% endif %}
+
+                                    <input type="file" name="tls_key" id="tls_key" class="default">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-theme03" value="Save">
+                    </form>
+                </div>
+            </div>
+
+          </div><!-- /row -->
+        </section>
+      </section>
+{% endblock %}

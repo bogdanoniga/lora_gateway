@@ -1,0 +1,142 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    <!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li class="mt">
+                    <a href="configs" >
+                        <i class="fa fa-cogs"></i>
+                        <span>Configurations</span>
+                    </a>
+                </li>
+                <li class="mt">
+                    <a class="active" href="control" >
+                        <i class="fa fa-cube" aria-hidden="true"></i>
+                        <span>Control Panel</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+
+    <!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+          <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <div class="table-header table-header-control-panel">
+                        <h4 class="mb"><i class="fa fa-angle-right"></i> LoRa Gateway Bridge </h4>
+
+                        <div id="lora_gateway_bridge_status">
+                            {% if lora_gateway_bridge_status == 'Failed' %}
+                                <span class="label label-danger">{{ lora_gateway_bridge_status }}</span></td>
+                            {% elseif lora_gateway_bridge_status == 'Active' %}
+                                <span class="label label-success">{{ lora_gateway_bridge_status }}</span></td>
+                            {% elseif lora_gateway_bridge_status == 'Inactive' %}
+                                <span class="label label-default">{{ lora_gateway_bridge_status }}</span></td>
+                            {% endif %}
+                        </div>
+
+                        <div id="lora_gateway_bridge_restart" class="button-div button_restart">
+                          <i class="fa fa-refresh"></i>
+                          <label class="button-label" for="lora_gateway_bridge_restart">Restart</label>
+                        </div>
+
+                        <div id="lora_gateway_bridge_stop" class="button-div button_stop">
+                          <i class="fa fa-stop"></i>
+                          <label class="button-label" for="lora_gateway_bridge_stop">Stop</label>
+                        </div>
+
+                        <div id="lora_gateway_bridge_start" class="button-div button_start">
+                          <i class="fa fa-play"></i>
+                          <label class="button-label" for="lora_gateway_bridge_start">Start</label>
+                        </div>
+                    </div>
+
+                    <pre>{{ lora_gateway_bridge_output }}</pre>
+                </div>
+
+            </div><!-- col-lg-12-->
+
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <div class="table-header table-header-control-panel">
+                        <h4 class="mb"><i class="fa fa-angle-right"></i> Packet forwarder </h4>
+
+                        <div id="packet_forwarder_status">
+                            {% if packet_forwarder_status == 'Failed' %}
+                                <span class="label label-danger">{{ packet_forwarder_status }}</span></td>
+                            {% elseif packet_forwarder_status == 'Active' %}
+                                <span class="label label-success">{{ packet_forwarder_status }}</span></td>
+                            {% elseif packet_forwarder_status == 'Inactive' %}
+                                <span class="label label-default">{{ packet_forwarder_status }}</span></td>
+                            {% endif %}
+                        </div>
+
+                        <div id="gateway_restart" class="button-div button_restart">
+                          <i class="fa fa-refresh"></i>
+                          <label class="button-label" for="gateway_restart">Restart</label>
+                        </div>
+
+                        <div id="gateway_stop" class="button-div button_stop">
+                          <i class="fa fa-stop"></i>
+                          <label class="button-label" for="gateway_stop">Stop</label>
+                        </div>
+
+                        <div id="gateway_start" class="button-div button_start">
+                          <i class="fa fa-play"></i>
+                          <label class="button-label" for="gateway_start">Start</label>
+                        </div>
+                    </div>
+
+                    <pre>{{ packet_forwarder_output }}</pre>
+                </div>
+
+            </div><!-- col-lg-12-->
+
+            <div class="col-lg-6">
+                <div class="form-panel">
+                    <div class="table-header">
+                        <h4 class="mb"><i class="fa fa-angle-right"></i> Gateway registries values </h4>
+
+                        <div id="lora_gateway_reset" class="button-div button_restart">
+                          <i class="fa fa-refresh"></i>
+                          <label class="button-label" for="lora_gateway_reset">Reset</label>
+                        </div>
+                    </div>
+                    <pre>{{ registries }}</pre>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-panel">
+                    <div class="table-header table-header-control-panel">
+                        <h4 class="mb"><i class="fa fa-angle-right"></i> SPI status </h4>
+
+                        <div id="packet_forwarder_status">
+                            {% if spi_value == '48' %}
+                                <span class="label label-success">Active</span></td>
+                            {% else %}
+                                <span class="label label-danger">Value expected: 48</span></td>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <pre>{{ spi }}</pre>
+                </div>
+            </div>
+          </div>
+        </section>
+      </section>
+{% endblock %}

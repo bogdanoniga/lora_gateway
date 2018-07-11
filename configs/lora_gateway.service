@@ -1,0 +1,8 @@
+[Unit]
+After=lora.service
+
+[Service]
+ExecStart=/usr/local/bin/lora_gateway.sh
+
+[Install]
+WantedBy=default.target

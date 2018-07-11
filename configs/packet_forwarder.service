@@ -1,0 +1,8 @@
+[Unit]
+After=packet_forwarder.service
+
+[Service]
+ExecStart=/usr/local/bin/packet_forwarder.sh
+
+[Install]
+WantedBy=default.target
