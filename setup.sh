@@ -38,7 +38,7 @@ sudo chmod -R 777 /usr/share/lora_gateway/packet_forwarder && cd /usr/share/lora
 sudo make all
 
 echo "[*] Installing Nodejs & npm"
-curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs nginx sqlite3
 
 echo "[*] Installing lora_gateway"
