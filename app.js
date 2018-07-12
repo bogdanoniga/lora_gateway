@@ -9,6 +9,7 @@ var fs = require('fs-extra');       //File System - for file manipulation
 
 var initial_configs = require('./routes/initial_configs');
 
+var index = require('./routes/index');
 var configs = require('./routes/configs');
 var control = require('./routes/control');
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(busboy());
 
+app.use('/', index);
 app.use('/configs', configs);
 app.use('/control', control);
 
