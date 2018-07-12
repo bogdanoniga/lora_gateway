@@ -43,7 +43,7 @@ sudo apt-get install -y nodejs nginx sqlite3
 
 echo "[*] Installing lora_gateway"
 cd /usr/share/lora_gateway
-npm install -g
+sudo npm install -g
 
 echo "[*] Setting nginx config"
 sudo mv ./configs/nginx.conf /etc/nginx/sites-enabled/default
