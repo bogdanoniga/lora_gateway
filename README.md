@@ -57,6 +57,15 @@ journalctl -u lora_gateway.service -f
 sudo systemctl enable lora_gateway.service
 ```
 
+##### Wiring Raspberry <-> iC880A SPI
+
+- Follow wiring
+[![](./public/img/gateway/wiring.jpg)](./public/img/gateway/wiring.jpg)
+
+```
+https://github.com/ttn-zh/ic880a-gateway/wiki
+```
+
 ##### Start dev environment
 
 ```
